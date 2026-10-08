@@ -1,0 +1,30 @@
+:root {
+    --border: #d1d9e0;
+    --muted: #59636e;
+    --accent: #0969da;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #1f2328;
+    background: #fff;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+}

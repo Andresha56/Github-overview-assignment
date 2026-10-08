@@ -1,0 +1,6 @@
+.activity { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 16px; }
+.activity__text h3 { margin: 0 0 12px; font-size: 14px; font-weight: 400; }
+.activity__text a { font-weight: 600; }
+.activity__chart { height: 220px; border-left: 1px solid var(--border); }
+@media (max-width: 600px) { .activity { grid-template-columns: 1fr; } .activity__chart { border-left: 0; } }
+@media (max-width: 480px) { .activity { padding: 12px; } .activity__chart { height: 200px; border-top: 1px solid var(--border); } }
