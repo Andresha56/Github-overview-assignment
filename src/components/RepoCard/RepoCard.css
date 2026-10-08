@@ -12,6 +12,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
 }
 
 .repo__name {
@@ -25,6 +26,8 @@
     border-radius: 2em;
     padding: 0 7px;
     color: var(--muted);
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .repo__fork {

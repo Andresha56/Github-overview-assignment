@@ -1,6 +1,11 @@
 // Only data GitHub exposes no API for lives here.
 export const profileExtras = { linkedin: 'in/shreeramkushwaha', stars: 6 };
-export const achievements = ['🤠', '🎶', '🦈'];
+const BADGES = 'https://github.githubassets.com/assets';
+export const achievements = [
+  { slug: 'pull-shark', name: 'Pull Shark', img: `${BADGES}/pull-shark-gold-90985540b385.png`, tier: 'x4' },
+  { slug: 'quickdraw', name: 'Quickdraw', img: `${BADGES}/quickdraw-default-39c6aec8ff89.png` },
+  { slug: 'yolo', name: 'YOLO', img: `${BADGES}/yolo-default-be0bbff04951.png` }
+];
 export const activityOrgs = ['@UptimeAI', '@timescale'];
 export const activityOverview = {
   repos: ['UptimeAI/uptime_webapp', 'UptimeAI/uptime_server', 'UptimeAI/uptime_ml'],

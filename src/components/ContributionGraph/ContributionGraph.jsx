@@ -13,25 +13,29 @@ function ContributionGraph({ year }) {
   const total = useMemo(() => days?.reduce((sum, d) => sum + d.count, 0) ?? 0, [days]);
   const option = useMemo(() => (days?.length ? buildHeatmapOption(days) : null), [days]);
   const chartRef = useEchart(option);
-  const title = loading
-    ? 'Loading contributions…'
-    : `${formatNumber(total)} contributions in ${year === LATEST_YEAR ? 'the last year' : year}`;
+  const title = `${loading ? '–' : formatNumber(total)} contributions in ${year === LATEST_YEAR ? 'the last year' : year}`;
 
   return (
     <>
     <div className="contrib__header">
       <h2 className="contrib__title">{title}</h2>
-       <p className="contrib__title">Contribution Settings ↓</p>
+      <p className="contrib__settings">Contribution settings ▾</p>
     </div>
     <section className="contrib">
-      
       {error ? <p>Unable to load contributions.</p> : (
-        <div className="contrib__scroll"><div ref={chartRef} className="contrib__chart" /></div>
+        <div className="contrib__scroll">
+          {loading && <div className="spinner contrib__spinner" role="status" aria-label="Loading contributions" />}
+          <div ref={chartRef} className="contrib__chart" />
+        </div>
       )}
       <div className="contrib__legend">
         Less {HEATMAP_COLORS.map((c) => <i key={c} style={{ background: c }} />)} More
       </div>
-      <div className="contrib__orgs">{activityOrgs.map((o) => <span key={o}>{o}</span>)}</div>
+      <div className="contrib__orgs">
+        {activityOrgs.map((o) => (
+          <span key={o}><img src={`https://github.com/${o.slice(1)}.png?size=40`} alt="" />{o}</span>
+        ))}
+      </div>
     </section>
     </>
   );

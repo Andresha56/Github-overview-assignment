@@ -15,7 +15,7 @@ export default function Overview() {
       <div className="overview__content">
         <PopularRepos />
         <div className="overview__box">
-          <Suspense fallback={<div className="overview__loading">Loading…</div>}>
+          <Suspense fallback={<div className="spinner" role="status" aria-label="Loading" />}>
             <div className="overview__contrib">
               <div className="overview__contrib-content">
                 <ContributionGraph year={year} />

@@ -6,14 +6,39 @@
 }
 
 .tabs__tab {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
     background: none;
     border: 0;
     border-bottom: 2px solid transparent;
-    padding: 8px 12px;
+    padding: 0;
     font: inherit;
     cursor: pointer;
     color: #1f2328;
     white-space: nowrap;
+}
+
+/* GitHub puts the hover background on an inner pill so the underline stays flat. */
+.tabs__inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 8px;
+    line-height: 30px;
+    border-radius: 6px;
+}
+
+.tabs__tab:hover .tabs__inner {
+    background: #d0d7de52;
+}
+
+.tabs__tab:focus-visible {
+    outline: none;
+}
+
+.tabs__tab:focus-visible .tabs__inner {
+    box-shadow: inset 0 0 0 2px var(--accent);
 }
 
 .tabs__tab--active {
@@ -21,15 +46,23 @@
     font-weight: 600;
 }
 
+.tabs__icon {
+    flex-shrink: 0;
+    fill: var(--muted);
+}
+
 .tabs__count {
-    margin-left: 6px;
+    min-width: 20px;
     padding: 0 6px;
     border-radius: 2em;
     background: #818b981f;
     font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    text-align: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1012px) {
     .tabs {
         padding: 0 16px;
     }
@@ -41,7 +74,7 @@
         gap: 0;
     }
 
-    .tabs__tab {
-        padding: 8px;
+    .tabs__icon {
+        display: none;
     }
 }

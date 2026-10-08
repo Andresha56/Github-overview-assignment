@@ -6,65 +6,71 @@ export const HEATMAP_COLORS = [
   '#216e39',
 ];
 
-export const buildHeatmapOption = (days) => ({
-  tooltip: {
-    formatter: ({ value }) =>
-      `${value[2]} contributions on ${value[0]}`,
-  },
-
-  visualMap: {
-    show: false,
-    type: 'piecewise',
-    dimension: 1,
-    pieces: HEATMAP_COLORS.map((color, value) => ({
-      value,
-      color,
-    })),
-  },
-
-  calendar: {
-    range: [days[0].date, days[days.length - 1].date],
-    cellSize: ['auto', 11],
-
-    left: 30,
-    right: 5,
-    top: 20,
-
-    itemStyle: {
-      borderWidth: 2,
-      borderColor: '#fff',
+export const buildHeatmapOption = (days) => {
+  const [startYear, startMonth] = days[0].date.split('-').map(Number);
+  return {
+    tooltip: {
+      formatter: ({ value }) =>
+        `${value[2]} contributions on ${value[0]}`,
     },
 
-    splitLine: {
+    visualMap: {
       show: false,
+      type: 'piecewise',
+      dimension: 1,
+      pieces: HEATMAP_COLORS.map((color, value) => ({
+        value,
+        color,
+      })),
     },
 
-    yearLabel: {
-      show: false,
+    calendar: {
+      range: [days[0].date, days[days.length - 1].date],
+      cellSize: ['auto', 11],
+
+      left: 30,
+      right: 5,
+      top: 20,
+
+      itemStyle: {
+        borderWidth: 2,
+        borderColor: '#fff',
+      },
+
+      splitLine: {
+        show: false,
+      },
+
+      yearLabel: {
+        show: false,
+      },
+
+      monthLabel: {
+        nameMap: 'en',
+        // A rolling "last year" range starts and ends in the same month; label it only once.
+        formatter: ({ yyyy, M, nameMap }) =>
+          M === startMonth && +yyyy !== startYear ? '' : nameMap,
+      },
+
+      dayLabel: {
+        firstDay: 0,
+        nameMap: ['', 'Mon', '', 'Wed', '', 'Fri', ''],
+      },
     },
 
-    monthLabel: {
-      nameMap: 'en',
-    },
-
-    dayLabel: {
-      firstDay: 0,
-      nameMap: ['', 'Mon', '', 'Wed', '', 'Fri', ''],
-    },
-  },
-
-  series: [
-    {
-      type: 'heatmap',
-      coordinateSystem: 'calendar',
-      data: days.map((day) => [
-        day.date,
-        day.level,
-        day.count,
-      ]),
-    },
-  ],
-});
+    series: [
+      {
+        type: 'heatmap',
+        coordinateSystem: 'calendar',
+        data: days.map((day) => [
+          day.date,
+          day.level,
+          day.count,
+        ]),
+      },
+    ],
+  };
+};
 
 export const buildRadarOption = ({
   commits,
@@ -73,7 +79,7 @@ export const buildRadarOption = ({
   codeReview,
 }) => ({
   radar: {
-    // radius: '55%',
+    radius: '50%',
     splitNumber: 1,
 
     axisName: {

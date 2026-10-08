@@ -18,7 +18,7 @@ export default function App() {
       </div>
       <main className="app-main">
         <ProfilePanel />
-        <Suspense fallback={<div className="app-loading">Loading…</div>}>
+        <Suspense fallback={<div className="spinner" role="status" aria-label="Loading" />}>
           {activeTab === 'Overview' ? <Overview /> : <EmptyTab name={activeTab} />}
         </Suspense>
       </main>
