@@ -13,7 +13,7 @@ export const activityOverview = {
   radar: { commits: 83, pullRequests: 17, issues: 0, codeReview: 0 }
 };
 export const contributionActivity = {
-  month: 'October 2025',
+  month: 'October 2026',
   commits: { count: 56, repos: 11 },
   pullRequests: {
     count: 29, repos: 5,
